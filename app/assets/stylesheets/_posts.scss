@@ -1,0 +1,94 @@
+.posts.index {
+  .card {
+    border-radius: 0;
+    
+    margin-bottom: 20px;
+    background-color: light-gray;
+    .card-topper {
+      
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-block {
+      padding: 10px;
+      .card-title {
+        font-size: 1.3rem;
+        margin-bottom: 0;
+        a {
+          color: black;
+          text-decoration: none;
+        }
+      }
+      .tags {
+        margin-bottom: 0;
+        a {
+          font-family: 'Montserrat', sans-serif;
+          font-size: 12px;
+        }
+      }
+      .published-date {
+        font-size: 0.8rem;
+        color: #787878;
+        font-weight: 300;
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+      }
+      .card-text {
+        font-size: 0.9rem;
+        color: black;
+      }
+
+    }
+  }
+}
+
+.posts.edit, .posts.new {
+  .card {
+    .card-block {
+      background-color: light-gray;
+    }
+    .card-title {
+      margin-bottom: 0;
+      font-size: 18px;
+    }
+    .list-group-item {
+      padding: 10px;
+      border-left: 0;
+      border-right: 0;
+      input[type='text'], textarea {
+        font-size: 14px;
+        background-color: light-gray;
+      }
+      textarea {
+        height: 100px;
+      }
+      &:last-child {
+        background-color: light-gray;
+      }
+    }
+  }
+}
+
+.posts.show {
+  .author-bio {
+    background-color: white;
+    padding: 15px 45px;
+    margin: 30px 0;
+    img {
+      border-radius: 50%;
+    }
+    img, h4 {
+      margin-bottom: 10px;
+    }
+    h4 {
+      font-weight: bold;
+      font-size: 22px;
+    }
+    h6 {
+      font-weight: 300;
+      font-size: 16px
+    }
+  }
+}
+

@@ -1,0 +1,46 @@
+<% provide(:friend_first_name, 'All friends') %>
+
+<% if user_signed_in? %>
+
+<h1>Friends</h1>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Twitter</th>
+  
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @requiredFriends.each do |friend| %> 
+        <tr>
+        <% @users.each do |user| %>
+          <% if user.id == friend.user_id %>
+            <td><%= user.first_name %> <%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.phone %></td>
+            <td><%= user.twitter %></td>
+            <td><%= friend.status %></td>
+            <td><%= link_to 'Posts', show_friends_post_path(user), class: 'btn btn-secondary' %></td>
+            <td><%= link_to 'Delete', friend, class: "btn btn-danger"  %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  
+  <%= link_to 'New Friend', users_path, class:"btn btn-secondary" %>
+
+<% else %>
+
+<h1>Hello World!</h1>
+This is my first Rails Webpage...
+
+<% end %>
+

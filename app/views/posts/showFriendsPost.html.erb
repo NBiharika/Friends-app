@@ -1,0 +1,21 @@
+<% provide(:page_title, "Friend's Post") %>
+
+<p style="color: green"><%= notice %></p>
+
+<div class="row">
+  <div class="col-md-1 col-lg-2"></div>
+  <div class="col-md-10 col-lg-8 text-xs-center">
+    <% @posts.each do |post| %>
+    <h1><%= post.title %></h1>
+    <h6><%= post.display_day_published %></h6>
+    <h6><%= @user.first_name %> <%= @user.last_name %></h6>
+    <%= post.body.html_safe %>
+     <br/>
+      <br/>
+    <% end %>
+
+  <%= link_to "Back to Friends", friends_path, class: 'btn btn-dark' %>
+
+</div>
+</div>
+  

@@ -1,0 +1,14 @@
+<div class='col-sm-6 col-lg-4'>
+  <div class="card">
+    <%= link_to post do %>
+      <div class="card-topper"></div>
+    <% end %>
+    <div class="card-block">
+      <h4 class="card-title"><%= link_to post.title, post %></h4>
+      <h5 class="card-text"><%= current_user.email %></h5>
+      <h6 class="published-date"><%= post.display_day_published %></h6>
+      <p class="card-text"><%= truncate(post.description, length: 130) %></p>
+      <%= link_to 'Read', post, class: 'btn btn-read' %>
+    </div>
+  </div>
+</div>

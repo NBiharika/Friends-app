@@ -1,0 +1,14 @@
+<% provide(:page_title, 'All Posts') %>
+
+<div class="row">
+  <% @posts.each do |post| %>
+    <% if post.user == current_user %>
+      <%= render post %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to "New post", new_post_path, class: 'btn btn-secondary' %>
+
+  
+
