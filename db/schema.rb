@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_08_104241) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_183533) do
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -83,8 +83,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_104241) do
     t.string "last_name"
     t.string "phone"
     t.string "twitter"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"

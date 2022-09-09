@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     skip_controllers :authorizations, :applications, :authorized_applications
   end
   resources :posts
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   
   get '/friends/users' => 'friends#users', as: 'users'
 
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/requests/accept/:id' => 'friends#accept', as: 'accept'
 
   get '/requests/decline/:id' => 'friends#decline', as: 'decline'
+
+  get 'login/create' => 'logins#create', as: 'create_login'
   
   devise_scope :user do  
    get '/users/sign_out' => 'devise/sessions#destroy'     

@@ -22,8 +22,6 @@ Doorkeeper.configure do
     User.authenticate(params[:email], params[:password])
   end
 
-
-
   grant_flows %w[password]
   
   allow_blank_redirect_uri true
