@@ -9,12 +9,9 @@ class FriendsController < ApplicationController
   # GET /friends.json
 
   def users
-   #@users  = User.paginate(:page => params[:page], :per_page=>10)
-   #@friends = current_user.friends
    @friends = Friend.where(foreign_id: current_user.id)
-   #@users = User.all_except(current_user)
-   @users = User.where.not(id: current_user.id) 
-
+   id = current_user.friends.pluck(:user_id)
+   @users = User.where.not(id: id) && User.where.not(id: current_user.id)
   end
 
   def add
@@ -51,6 +48,11 @@ class FriendsController < ApplicationController
     end
   end
 
+  def sent
+    @users = User.all 
+    @requiredFriends = Friend.where(foreign_id: current_user.id, status: 'sent')
+  end
+
   def requests
     @users = User.all 
     @requiredFriends = Friend.where(foreign_id: current_user.id, status: 'pending')
@@ -79,7 +81,19 @@ class FriendsController < ApplicationController
       format.html { redirect_to users_url, notice: "Friend request declined" }
       format.json { head :no_content }
     end
+  end
 
+  def unsend
+     @user = User.find(params[:id])
+     @friend = Friend.find_by(user_id: @user.id, foreign_id: current_user.id, status: 'sent')
+     @friend.destroy
+     @incomingfriend = Friend.find_by(user_id: current_user.id, foreign_id: @user.id, status: 'pending')
+     @incomingfriend.destroy
+
+     respond_to do |format|
+      format.html { redirect_to users_url, notice: "Friend request unsent" }
+      format.json { head :no_content }
+    end
   end
 
   def index
@@ -171,5 +185,4 @@ class FriendsController < ApplicationController
     def friend_params
       params.require(:friend).permit(:user_id, :foreign_id, :status)
     end
-
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  use_doorkeeper do
-    skip_controllers :authorizations, :applications, :authorized_applications
-  end
+  # use_doorkeeper do
+  #   skip_controllers :authorizations, :applications, :authorized_applications
+  # end
   resources :posts
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   
@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 
   get '/requests/decline/:id' => 'friends#decline', as: 'decline'
 
+  get '/sent' => 'friends#sent', as: 'sent'
+
+  get '/requests/unsend/:id' => 'friends#unsend', as: 'unsend'
+
   get 'login/create' => 'logins#create', as: 'create_login'
   
   devise_scope :user do  
@@ -37,3 +41,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 end
+
